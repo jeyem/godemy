@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/jeyem/videolearn/app"
-	"github.com/jeyem/videolearn/config"
+	"github.com/jeyem/godemy/app"
+	"github.com/jeyem/godemy/config"
 )
 
 func main() {

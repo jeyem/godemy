@@ -7,6 +7,7 @@ var (
 		MongoPort: 27017,
 		MongoHost: "127.0.0.1",
 		Port:      2000,
+		Views:     "views",
 	}
 )
 
@@ -16,4 +17,6 @@ type Config struct {
 	MongoPort int    `json:"mongo_port" required:"required"`
 	Port      int    `json:"port"`
 	Debug     bool   `json:"debug"`
+	Views     string `json:"views"`
+	VideoPath string `json:"video_path"`
 }

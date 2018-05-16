@@ -3,7 +3,7 @@ package model
 import (
 	"github.com/jeyem/mogo"
 
-	"navaak/navaak/model/video"
+	"github.com/jeyem/godemy/model/video"
 )
 
 func Register(db *mogo.DB, s ...string) {

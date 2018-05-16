@@ -3,11 +3,12 @@ package app
 import (
 	"fmt"
 	"log"
+	"path/filepath"
 
+	"github.com/jeyem/godemy/config"
+	"github.com/jeyem/godemy/controller/web"
+	"github.com/jeyem/godemy/model"
 	"github.com/jeyem/mogo"
-	"github.com/jeyem/videolearn/config"
-	"github.com/jeyem/videolearn/controller/web"
-	"github.com/jeyem/videolearn/model"
 	"github.com/labstack/echo"
 )
 
@@ -26,6 +27,7 @@ func New(c config.Config) *App {
 }
 
 func (a *App) Register(controls ...string) {
+	a.loadModels("video")
 	for _, c := range controls {
 		switch c {
 		case "web":
@@ -35,7 +37,7 @@ func (a *App) Register(controls ...string) {
 }
 
 func (a *App) Run() {
-
+	a.http.Static("static", filepath.Join(a.config.Views, "static"))
 	a.http.Logger.Fatal(a.http.Start(fmt.Sprintf(":%d", a.config.Port)))
 }
 
@@ -51,7 +53,9 @@ func (a *App) Config() config.Config {
 }
 
 func (a *App) dbConnection() *mogo.DB {
-	uri := fmt.Sprintf("%s:%d/%s", a.config.MongoHost, a.config.MongoPort,
+	uri := fmt.Sprintf("%s:%d/%s",
+		a.config.MongoHost,
+		a.config.MongoPort,
 		a.config.MongoDB)
 	db, err := mogo.Conn(uri)
 	if err != nil {
