@@ -6,6 +6,7 @@ import (
 	"path/filepath"
 
 	"github.com/jeyem/godemy/config"
+	"github.com/jeyem/godemy/controller/api"
 	"github.com/jeyem/godemy/controller/web"
 	"github.com/jeyem/godemy/model"
 	"github.com/jeyem/mogo"
@@ -27,11 +28,13 @@ func New(c config.Config) *App {
 }
 
 func (a *App) Register(controls ...string) {
-	a.loadModels("video")
+	a.loadModels("video", "site")
 	for _, c := range controls {
 		switch c {
 		case "web":
 			web.Register(a.http, a.config)
+		case "api":
+			api.Register(a.http, a.config)
 		}
 	}
 }

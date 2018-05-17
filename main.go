@@ -7,6 +7,6 @@ import (
 
 func main() {
 	a := app.New(config.DefaultConfig)
-	a.Register("web")
+	a.Register("web", "api")
 	a.Run()
 }

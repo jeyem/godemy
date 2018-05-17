@@ -30,6 +30,6 @@ func Register(e *echo.Echo, c *config.Config) {
 
 func (w web) routes() {
 	w.http.GET("/", index)
-	w.http.GET("video/:slug", getVideo)
+	w.http.GET("/video/:slug", getVideo)
 	w.http.GET("/stream/:src", stream)
 }
